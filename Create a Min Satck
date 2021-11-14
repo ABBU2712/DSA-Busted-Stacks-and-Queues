@@ -1,0 +1,40 @@
+#Create a Minstack with these properties
+#push(x) – Push element x onto stack.
+#pop() – Removes the element on top of the stack.
+#top() – Get the top element.
+#getMin() – Retrieve the minimum element in the stack.
+
+
+class MinStack:
+    def __init__(self):
+        self.items = []
+        self.mini = []
+    # @param x, an integer
+    def push(self, x):
+        if len(self.mini) == 0 or self.mini[-1] >= x: #Topmost element should be smallest
+            self.mini.append(x)
+        self.items.append(x)
+
+
+    # @return nothing
+    def pop(self):
+        if len(self.items)>0:
+            temp = self.items[-1]
+            self.items.pop()
+        if len(self.mini)>0 and self.mini[-1]==temp:
+            self.mini.pop()
+
+
+    # @return an integer
+    def top(self):
+        if len(self.items) > 0:
+            return self.items[-1]
+        return -1
+
+
+    # @return an integer
+    def getMin(self):
+        if len(self.mini)!=0:
+            return self.mini[-1]
+        return -1
+
